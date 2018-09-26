@@ -28,24 +28,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = SCNScene()
-/*-----------------------------------------------------*/
-//物体生成
-/*-----------------------------------------------------*/
+        
+        //xyzの位置に物体を生成
+        creatNode(x:0,y:0,z:-0.5)
+    }
+    
+
+    
+    //(x,y,z)の位置に立方体を生成する関数。
+    func creatNode(x:Float,y:Float,z:Float){
         //ノードを生成
         let node = SCNNode()
         // ノードの形状を一辺が20cmの立方体とする
-        node.geometry = SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0)
+        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
         //マテリアル(表面)を生成する
         let material = SCNMaterial()
         //表面はの画像を設定。
         material.diffuse.contents = UIImage(named: "swift.png")
         //表面の情報をノードに適用
         node.geometry?.materials = [material]
-        //ノードの位置
-        node.position = SCNVector3(0, 0, -0.5) // ノードの位置は、カメラを原点として左右：0m 上下：0m　奥に50cm
+        //ノードの位置は、カメラを原点として左右：x m 上下：y m　奥：z m
+        node.position = SCNVector3(x, y, z)
         // 生成したノードをシーンに追加する
         sceneView.scene.rootNode.addChildNode(node)
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
