@@ -35,6 +35,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
 
     
+    
     //(x,y,z)の位置に立方体を生成する関数。
     func creatNode(x:Float,y:Float,z:Float){
         //ノードを生成
@@ -55,12 +56,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
